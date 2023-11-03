@@ -9,6 +9,9 @@ import lombok.Getter;
 public enum BookType {
     HARD("딱딱한 책"), SOFT("부드러운 책");
 
+    // HARD : 객체 이름
+    //"딱딱한 책" : 객체안에 담긴 값
+
     private final String value;
 
     @JsonCreator
@@ -20,4 +23,5 @@ public enum BookType {
         }
         return null;
     }
+
 }

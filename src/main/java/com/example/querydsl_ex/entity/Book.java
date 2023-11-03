@@ -2,6 +2,8 @@ package com.example.querydsl_ex.entity;
 
 import com.example.querydsl_ex.constant.BookType;
 import com.example.querydsl_ex.dto.CreateBookDto;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -23,15 +25,21 @@ public class Book {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "author_id")
+    @JsonIgnore
     private Author author;
+    @Builder
+    public Book(String bookName, BookType bookType, Author author) {
+        this.bookName = bookName;
+        this.bookType = bookType;
+        this.author = author;
+    }
 
     public static Book toEntity(CreateBookDto createBookDto, Author author){
-        Book newBook = new Book();
-        newBook.bookName = createBookDto.getBookName();
-        newBook.bookType = createBookDto.getBookType();
-        newBook.author = author;
-
-        return newBook;
+        return Book.builder()
+                .bookName(createBookDto.getBookName())
+                .bookType(createBookDto.getBookType())
+                .author(author)
+                .build();
     }
 
 }

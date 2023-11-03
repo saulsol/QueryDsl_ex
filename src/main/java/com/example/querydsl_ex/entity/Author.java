@@ -1,6 +1,7 @@
 package com.example.querydsl_ex.entity;
 
 import com.example.querydsl_ex.dto.CreateAuthorDto;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -18,13 +19,18 @@ public class Author {
     private String name;
 
     private String email;
+    @Builder
+    public Author(String name, String email) {
+        this.name = name;
+        this.email = email;
+    }
 
     public static Author toEntity(CreateAuthorDto createAuthorDto){
-        Author newAuthor = new Author();
-        newAuthor.name = createAuthorDto.getName();
-        newAuthor.email = createAuthorDto.getEmail();
 
-        return newAuthor;
+        return Author.builder()
+                .email(createAuthorDto.getEmail())
+                .name(createAuthorDto.getName())
+                .build();
     }
 
 }

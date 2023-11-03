@@ -4,7 +4,6 @@ import com.example.querydsl_ex.constant.BookType;
 import lombok.Data;
 
 @Data
-public class CreateBookDto {
-    private String bookName;
-    private BookType bookType;
+public class BookTypeDto {
+    BookType bookType;
 }

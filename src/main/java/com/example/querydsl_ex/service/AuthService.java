@@ -11,7 +11,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -28,6 +27,7 @@ public class AuthService {
     public Page<Author> findAllAuthor(Pageable pageable){
         return authorRepository.findAll(pageable);
     }
+
 
 
 }
