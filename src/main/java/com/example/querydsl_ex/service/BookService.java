@@ -61,13 +61,14 @@ public class BookService {
     }
 
     public BookAndAuthorDto findByBookName(String bookName){
-        Book findBook = bookRepository.findByBookName(bookName).get();
-        return BookAndAuthorDto.builder()
-                .bookName(findBook.getBookName())
-                .bookType(findBook.getBookType())
-                .authorName(findBook.getAuthor().getName())
-                .authorEmail(findBook.getAuthor().getEmail())
-                .build();
+//        Book findBook = bookRepository.findByBookName(bookName).get();
+//        return BookAndAuthorDto.builder()
+//                .bookName(findBook.getBookName())
+//                .bookType(findBook.getBookType())
+//                .authorName(findBook.getAuthor().getName())
+//                .authorEmail(findBook.getAuthor().getEmail())
+//                .build();
+        return bookRepository.findByBookNameDto(bookName);
     }
 
 }

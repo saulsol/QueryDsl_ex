@@ -11,15 +11,15 @@ public class BookAndAuthorDto {
 
     private BookType bookType;
 
-    private String authorName;
+    private String name;
 
-    private String authorEmail;
+    private String email;
 
     @Builder
     public BookAndAuthorDto(String bookName, BookType bookType, String authorName, String authorEmail) {
         this.bookName = bookName;
         this.bookType = bookType;
-        this.authorName = authorName;
-        this.authorEmail = authorEmail;
+        this.name = authorName;
+        this.email = authorEmail;
     }
 }
