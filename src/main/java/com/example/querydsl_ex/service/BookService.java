@@ -1,6 +1,7 @@
 package com.example.querydsl_ex.service;
 
 import com.example.querydsl_ex.constant.BookType;
+import com.example.querydsl_ex.dto.BookAndAuthorDto;
 import com.example.querydsl_ex.dto.BookDto;
 import com.example.querydsl_ex.dto.BookTypeDto;
 import com.example.querydsl_ex.dto.CreateBookDto;
@@ -38,8 +39,9 @@ public class BookService {
         return "책이 생성되었습니다.";
     }
 
-    public List<Book> findByBookType(BookTypeDto bookTypeDto) {
+    public List<BookDto> findByBookType(BookTypeDto bookTypeDto) {
         QBook book = QBook.book;
+
         JPAQuery<Book> query = jpaQueryFactory.selectFrom(book);
         if (bookTypeDto.getBookType().equals(BookType.HARD)) {
             query.where(book.bookType.eq(BookType.HARD));
@@ -55,7 +57,17 @@ public class BookService {
             bookDto.setAuthorName(findBook.getAuthor().getName());
             bookDtoList.add(bookDto);
         }
-        return bookList;
+        return bookDtoList;
+    }
+
+    public BookAndAuthorDto findByBookName(String bookName){
+        Book findBook = bookRepository.findByBookName(bookName).get();
+        return BookAndAuthorDto.builder()
+                .bookName(findBook.getBookName())
+                .bookType(findBook.getBookType())
+                .authorName(findBook.getAuthor().getName())
+                .authorEmail(findBook.getAuthor().getEmail())
+                .build();
     }
 
 }

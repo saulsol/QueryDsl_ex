@@ -25,7 +25,6 @@ public class Book {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "author_id")
-    @JsonIgnore
     private Author author;
     @Builder
     public Book(String bookName, BookType bookType, Author author) {

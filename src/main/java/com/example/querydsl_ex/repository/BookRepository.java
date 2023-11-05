@@ -3,6 +3,8 @@ package com.example.querydsl_ex.repository;
 import com.example.querydsl_ex.entity.Book;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface BookRepository extends JpaRepository<Book, Long> {
+import java.util.Optional;
 
+public interface BookRepository extends JpaRepository<Book, Long> {
+    Optional<Book> findByBookName(String bookName);
 }

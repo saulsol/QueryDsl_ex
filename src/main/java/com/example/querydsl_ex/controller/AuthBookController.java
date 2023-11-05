@@ -10,10 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.net.http.HttpResponse;
 @Slf4j
@@ -46,5 +43,9 @@ public class AuthBookController {
       return ResponseEntity.ok().body(bookService.findByBookType(bookTypeDto));
     }
 
+    @GetMapping("/findByBookName")
+    public ResponseEntity<?> findByBookName(@RequestParam String bookName){
+        return ResponseEntity.ok().body(bookService.findByBookName(bookName));
+    }
 
 }
