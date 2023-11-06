@@ -13,5 +13,5 @@ public interface BookRepository extends JpaRepository<Book, Long> {
     @Query("SELECT NEW com.example.querydsl_ex.dto.BookAndAuthorDto(b.bookName, b.bookType, a.name, a.email)"+
         "FROM Book b JOIN fetch Author a ON b.author.authorId = a.authorId")
     BookAndAuthorDto findByBookNameDto(String bookName);
-    // 성공
+    //성공
 }
